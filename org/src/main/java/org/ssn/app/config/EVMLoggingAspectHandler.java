@@ -27,13 +27,15 @@ public class EVMLoggingAspectHandler {
   public void customAnnotationPointCut() {}
 
   @Around("springImplPointcut() && applicationPointCut()")
-  public void logEntryLevelInfo(final ProceedingJoinPoint lJoinPoint) {
+  public void logEntryLevelInfo(final ProceedingJoinPoint lJoinPoint) throws Throwable {
     System.out.println("Inside logEntryLevelInfo for method ::" + lJoinPoint.getSignature().getName());
+    lJoinPoint.proceed();
     customLog.logEntryLevelInfo(lJoinPoint);
   }
 
   @Around("customAnnotationPointCut()")
-  public void logCustomAnnotatedInfo(final ProceedingJoinPoint lJoinPoint) {
+  public void logCustomAnnotatedInfo(final ProceedingJoinPoint lJoinPoint) throws Throwable {
     System.out.println("Inside logCustomAnnotatedInfo for annotated method ::" + lJoinPoint.getSignature().getName());
+    lJoinPoint.proceed();
   }
 }
