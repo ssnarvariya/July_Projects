@@ -2,11 +2,18 @@ package org.ssn.app.config;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CustomLogService {
-  private static final EVMLogger log = EVMLogger.getEVMLoggerInstance(CustomLogService.class.getName());
+  private EVMLogger log;
+
+  @Autowired
+  public CustomLogService(ApplicationContext applicationContext) {
+    log = applicationContext.getBean(EVMLogger.class, getClass().getName());
+  }
 
   public void logEntryLevelInfo(ProceedingJoinPoint lJoinPoint) {
     JSONObject lJsonObject = null;
@@ -17,7 +24,7 @@ public class CustomLogService {
       log.debug(lJsonObject);
     }
     catch (Exception e) {
-      System.out.println(e);
+      e.printStackTrace();
     }
   }
 }
