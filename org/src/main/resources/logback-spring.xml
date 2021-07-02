@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-    <provider class="net.logstash.logback.composite.loggingevent.ArgumentsJsonProvider"/>
-   <!--  <fieldNames>
-               
-                <message>[ignore]</message>
-            </fieldNames> -->
-    </encoder> 
-    
+      <provider class="net.logstash.logback.composite.loggingevent.ArgumentsJsonProvider"/>
+    </encoder>
   </appender>
+
   <logger name="org.ssn.app" additivity="false" level="DEBUG">
     <appender-ref ref="STDOUT"/>
-</logger>
+  </logger>
+
   <root level="INFO">
-  
     <appender-ref ref="STDOUT"/>
-    
-  </root> 
+  </root>
+
 </configuration>

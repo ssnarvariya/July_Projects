@@ -4,9 +4,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TestServiceImpl {
-
-	
-	public void tryService(String msg){
-		
-	}
+  public void tryService(String msg) {}
 }
